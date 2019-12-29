@@ -20,8 +20,8 @@ signals:
 
 //-引擎自带的全局常量，可以在这里调节一些基础设定
 static const QString title="老鼠吃奶酪";//窗口标题
-static const int WindowsWidth=1500;//窗口宽
-static const int WindowsHeigh=1000;//窗口高
+static const int WindowsWidth=1100;//窗口宽
+static const int WindowsHeigh=930;//窗口高
 static const int MaximumWidth=1500;//舞台最大宽
 static const int MaximunHeigh=1000;//舞台最大高
 //-引擎自带的全局变量
