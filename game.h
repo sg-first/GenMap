@@ -1,7 +1,7 @@
 #pragma once
 #include "map.h"
 
-enum moveResult { M,X,N,K,F }; //遭遇猫、遭遇陷阱、遭遇奶酪、成功移动、非法移动
+enum moveResult { MeetCat,MeetTrap,MeetCheese,SuccessMove,FailMove }; //遭遇猫、遭遇陷阱、遭遇奶酪、成功移动、非法移动
 
 class game
 {
@@ -17,27 +17,27 @@ public:
         int y=p->y+dy;
 
         if(!m.canMove(p->x,p->y,dx,dy))
-            return F;
+            return FailMove;
         else if(m.m[x][y]=='m' || m.m[x][y]=='x')
         {
             p->subLife();
             p->reset();
             if(m.m[x][y]=='m')
-                return M;
+                return MeetCat;
             else
-                return X;
+                return MeetTrap;
         }
         else if(m.m[x][y]=='n')
         {
             p->addLevel();
             p->set(x,y);
             m.m[x][y]='0';
-            return N;
+            return MeetCheese;
         }
         else
         {
             p->set(x,y);
-            return K;
+            return SuccessMove;
         }
     }
 

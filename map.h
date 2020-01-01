@@ -73,7 +73,7 @@ private:
         this->m[startX][startY]='p';
         pos startPos=make_tuple(startX,startY);
 
-        auto isRepeat=[=](pos p, list<pos> path) {
+        auto isRepeat=[](pos p, list<pos> path) {
             for(pos pi : path)
             {
                 if(pi==p)
@@ -127,7 +127,7 @@ private:
 
     void genOther()
     {
-        auto isNotInit=[this](uint i,uint j) {
+        auto isNotGen=[this](uint i,uint j) {
             return this->m[i][j]=='-';
         };
         //生成剩余部分
@@ -135,7 +135,7 @@ private:
         {
             for(uint j=0;j<shape;j++)
             {
-                if(isNotInit(i,j))
+                if(isNotGen(i,j))
                 {
                     if(Rand::rand01()) //非规划路径有一半可能是致死物体
                     {
@@ -177,9 +177,9 @@ public:
     {
         int x=oldx+dx;
         int y=oldy+dy;
-        return abs(dx)<=1 && abs(dy)<=1 && //每次只能走一步
-                m[x][y]!='1' && //不能走墙里
-                x>=0&&x<gameMap::shape && y>=0&&y<gameMap::shape; //不能超范围
+        return x >= 0 && x < shape && y >= 0 && y < shape //不能超范围
+                    && abs(dx) <= 1 && abs(dy) <= 1 && //每次只能走一步，abs绝对值
+                    m[x][y] != '1'; //不能走墙里
     }
 
     gameMap()

@@ -44,25 +44,25 @@ void prompt(moveResult r,maincall* mc)
         mouseItem=mc->AddPixmapItem(":/mouse.jpg",p->y*gameMap::shape,p->x*gameMap::shape);
     };
 
-    if(r==K)
+    if(r==SuccessMove)
         updateMouse();
-    else if(r==M)
+    else if(r==MeetCat)
     {
         mc->setInfo("Meet Cat");
         updateMouse();
     }
-    else if(r==X)
+    else if(r==MeetTrap)
     {
         mc->setInfo("Meet Trap");
         updateMouse();
     }
-    else if(r==N)
+    else if(r==MeetCheese)
     {
         mc->setInfo("Get Cheese");
         mc->RemoveItem(itemM[p->x][p->y]); //p的新位置就是原来奶酪位置
         updateMouse();
     }
-    else if(r==F)
+    else if(r==FailMove)
         mc->setInfo("Move Failed");
 
     if(p->isDie())
